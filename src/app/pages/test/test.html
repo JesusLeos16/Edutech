@@ -1,0 +1,29 @@
+<header class="header">
+  <nav class="navbar">
+    <a class="logo" routerLink="/">Edutech</a>
+    <a class="linkatras" routerLink="/">Volver al inicio</a>
+  </nav>
+</header>
+
+<main class="contenedor">
+  @if (!terminado) {
+    <p class="progreso">Pregunta {{ preguntaActual + 1 }} de 4</p>
+    <div class="barrabase">
+      <div class="relleno" [style.width.%]="((preguntaActual + 1) / 4) * 100"></div>
+    </div>
+
+    <h1>{{ preguntas[preguntaActual].texto }}</h1>
+
+    <div class="opciones">
+      @for (opcion of preguntas[preguntaActual].opciones; track opcion) {
+        <button type="button" class="opcion" (click)="elegir(opcion)">
+          {{ opcion }}
+        </button>
+      }
+    </div>
+  } @else {
+    <h1>Listo</h1>
+    <p class="texto">Ya terminaste el test.</p>
+    <a class="btnazul" routerLink="/">Volver al inicio</a>
+  }
+</main>

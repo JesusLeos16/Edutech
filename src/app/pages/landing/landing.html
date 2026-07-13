@@ -1,0 +1,269 @@
+<header class="header">
+  <nav class="navbar">
+    <a class="logo" routerLink="/">Edutech</a>
+
+    <ul class="navlinks">
+      <li><a class="navlink navactivo" href="#inicio">Inicio</a></li>
+      <li><a class="navlink" href="#comofunciona">Cómo funciona</a></li>
+      <li><a class="navlink" href="#categorias">Categorías</a></li>
+      <li><a class="navlink" routerLink="/recomendaciones">Recomendaciones</a></li>
+      <li><a class="navlink" href="#acerca">Acerca de</a></li>
+      <li><a class="navlink" href="#">Iniciar sesión</a></li>
+    </ul>
+
+    <a class="registrobtn" routerLink="/test">Descubrir mis cursos</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="herotexto">
+      <h1 class="herotitulo">
+        Encuentra contenido para aprender
+        <strong class="palabraazul">según tus gustos</strong>
+      </h1>
+
+      <p class="herosub">
+        Responde 4 preguntas y recibe recomendaciones de videos, cursos
+        completos y listas de reproducción relacionadas con tus intereses, tu
+        nivel y tus objetivos.
+      </p>
+
+      <div class="heroctas">
+        <a class="btnazul" routerLink="/test">Descubrir mis cursos</a>
+        <a class="btnborde" href="#comofunciona">Ver cómo funciona</a>
+      </div>
+
+      <p class="frasegratis">
+        Recomendaciones gratuitas con contenido educativo de YouTube.
+      </p>
+    </div>
+
+    <div class="herofoto">
+      <img
+        class="imghero"
+        src="images/hero.png"
+        alt="Estudiantes aprendiendo en Edutech"
+      />
+    </div>
+  </section>
+
+  <section class="comofunciona" id="comofunciona">
+    <h2 class="tituloseccion">¿Cómo funciona Edutech?</h2>
+    <p class="subtitulo">Encuentra contenido útil sin pasar horas buscando.</p>
+
+    <div class="gridpasos">
+      <div class="paso">
+        <div class="iconopaso">
+          <i class="bi bi-list-check"></i>
+        </div>
+        <p class="numpaso">Paso 1</p>
+        <h3>Responde el test</h3>
+        <p>
+          Contesta 4 preguntas sobre tus intereses, nivel, objetivo y forma de
+          aprendizaje.
+        </p>
+      </div>
+      <div class="paso">
+        <div class="iconopaso">
+          <i class="bi bi-person-badge"></i>
+        </div>
+        <p class="numpaso">Paso 2</p>
+        <h3>Creamos tu perfil</h3>
+        <p>
+          Edutech utiliza tus respuestas para identificar qué tipo de contenido
+          podría ayudarte.
+        </p>
+      </div>
+      <div class="paso">
+        <div class="iconopaso">
+          <i class="bi bi-search"></i>
+        </div>
+        <p class="numpaso">Paso 3</p>
+        <h3>Buscamos por ti</h3>
+        <p>
+          La plataforma busca contenido educativo relacionado en YouTube.
+        </p>
+      </div>
+      <div class="paso">
+        <div class="iconopaso">
+          <i class="bi bi-play-circle"></i>
+        </div>
+        <p class="numpaso">Paso 4</p>
+        <h3>Comienza a aprender</h3>
+        <p>
+          Guarda tus recomendaciones, consulta playlists y registra tu
+          progreso.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="categorias" id="categorias">
+    <h2 class="tituloseccion">Explora tus intereses</h2>
+    <div class="gridcats">
+      <a class="caja" routerLink="/recomendaciones" [queryParams]="{ categoria: 'programacion' }">
+        <div class="icono iconoazul">
+          <i class="bi bi-code-slash"></i>
+        </div>
+        <p>Programación</p>
+      </a>
+      <a class="caja" routerLink="/recomendaciones" [queryParams]="{ categoria: 'diseno' }">
+        <div class="icono iconomorado">
+          <i class="bi bi-palette"></i>
+        </div>
+        <p>Diseño</p>
+      </a>
+      <a class="caja" routerLink="/recomendaciones" [queryParams]="{ categoria: 'negocios' }">
+        <div class="icono iconoverde">
+          <i class="bi bi-briefcase"></i>
+        </div>
+        <p>Negocios</p>
+      </a>
+      <a class="caja" routerLink="/recomendaciones" [queryParams]="{ categoria: 'marketing' }">
+        <div class="icono iconorosa">
+          <i class="bi bi-megaphone"></i>
+        </div>
+        <p>Marketing</p>
+      </a>
+      <a class="caja" routerLink="/recomendaciones" [queryParams]="{ categoria: 'idiomas' }">
+        <div class="icono iconolila">
+          <i class="bi bi-translate"></i>
+        </div>
+        <p>Idiomas</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="statitem">
+      <span class="statnum">4 preguntas</span>
+      <span class="statlabel">Para conocer tus preferencias de aprendizaje.</span>
+    </div>
+    <div class="statitem">
+      <span class="statnum">Contenido gratuito</span>
+      <span class="statlabel">Recomendaciones educativas disponibles en YouTube.</span>
+    </div>
+    <div class="statitem">
+      <span class="statnum">Resultados personalizados</span>
+      <span class="statlabel">Contenido relacionado con tu nivel e intereses.</span>
+    </div>
+  </section>
+
+  <section class="porque" id="acerca">
+    <h2 class="tituloseccion">¿Por qué utilizar Edutech?</h2>
+    <div class="lineamorada"></div>
+    <div class="gridporque">
+      <div class="cardporque">
+        <div class="iconoporque">
+          <i class="bi bi-sliders"></i>
+        </div>
+        <h3>Recomendaciones personalizadas</h3>
+        <p>
+          El contenido se selecciona según tus respuestas y no mediante una
+          búsqueda genérica.
+        </p>
+      </div>
+      <div class="cardporque">
+        <div class="iconoporque iconomoradoclaro">
+          <i class="bi bi-hourglass-split"></i>
+        </div>
+        <h3>Menos tiempo buscando</h3>
+        <p>
+          Encuentra videos y playlists educativas sin revisar cientos de
+          resultados manualmente.
+        </p>
+      </div>
+      <div class="cardporque">
+        <div class="iconoporque iconoverdeclaro">
+          <i class="bi bi-bookmark-check"></i>
+        </div>
+        <h3>Progreso organizado</h3>
+        <p>
+          Guarda contenido, consulta tus recomendaciones y continúa desde donde
+          te quedaste.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="vistaprevia">
+    <div class="textopreview">
+      <h2 class="tituloseccion izq">Tu ruta comienza con 4 preguntas</h2>
+      <p class="descrec">
+        Cuéntanos qué quieres aprender, cuánto conoces del tema, cuál es tu
+        objetivo y cómo prefieres estudiar.
+      </p>
+      <ul class="listapreguntas">
+        <li><i class="bi bi-1-circle"></i> ¿Qué te interesa aprender?</li>
+        <li><i class="bi bi-2-circle"></i> ¿Cuál es tu nivel?</li>
+        <li><i class="bi bi-3-circle"></i> ¿Cuál es tu objetivo?</li>
+        <li><i class="bi bi-4-circle"></i> ¿Qué tipo de contenido prefieres?</li>
+      </ul>
+      <p class="indicador">Pregunta 1 de 4</p>
+      <a class="btnazul" routerLink="/test">Comenzar el test</a>
+    </div>
+    <div class="cajapreview">
+      <p class="minipaso">Pregunta 1 de 4</p>
+      <h3>¿Qué te interesa aprender?</h3>
+      <button type="button" class="opcionpreview">Programación</button>
+      <button type="button" class="opcionpreview">Diseño</button>
+      <button type="button" class="opcionpreview">Negocios</button>
+      <button type="button" class="opcionpreview activa">Marketing</button>
+      <button type="button" class="opcionpreview">Idiomas</button>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cajacta">
+      <h2>¿Listo para encontrar tu próxima ruta de aprendizaje?</h2>
+      <p>
+        Responde el test y descubre contenido educativo relacionado con lo que
+        realmente quieres aprender.
+      </p>
+      <a class="btncta" routerLink="/test">Descubrir mis cursos</a>
+      <p class="notacta">Es gratuito y solo toma unos minutos.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="contacto">
+  <div class="gridfooter">
+    <div>
+      <p class="logofooter">Edutech</p>
+      <p class="textofooter">
+        Contenido educativo recomendado según tus intereses, nivel y objetivos
+        de aprendizaje.
+      </p>
+    </div>
+    <div>
+      <h4>Plataforma</h4>
+      <ul>
+        <li><a href="#comofunciona">Cómo funciona</a></li>
+        <li><a routerLink="/test">Test de preferencias</a></li>
+        <li><a routerLink="/recomendaciones">Recomendaciones</a></li>
+        <li><a href="#categorias">Categorías</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Recursos</h4>
+      <ul>
+        <li><a routerLink="/recomendaciones" [queryParams]="{ categoria: 'programacion' }">Programación</a></li>
+        <li><a routerLink="/recomendaciones" [queryParams]="{ categoria: 'diseno' }">Diseño</a></li>
+        <li><a routerLink="/recomendaciones" [queryParams]="{ categoria: 'negocios' }">Negocios</a></li>
+        <li><a routerLink="/recomendaciones" [queryParams]="{ categoria: 'marketing' }">Marketing</a></li>
+        <li><a routerLink="/recomendaciones" [queryParams]="{ categoria: 'idiomas' }">Idiomas</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Información</h4>
+      <ul>
+        <li><a href="#acerca">Acerca de</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#">Privacidad</a></li>
+        <li><a href="#">Términos</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copy">© 2026 Edutech. Integradoramigos.</div>
+</footer>

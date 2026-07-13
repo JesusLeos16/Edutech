@@ -1,0 +1,87 @@
+:host {
+  display: block;
+  font-family: Inter, system-ui, sans-serif;
+  --azul-principal: #0053db;
+  --morado: #831ada;
+  --texto: #111827;
+  --texto-muted: #6b7280;
+  --fondo-suave: #f2f3ff;
+}
+
+.header {
+  border-bottom: 1px solid #eef0ff;
+  background: #fff;
+}
+
+.navbar {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--azul-principal);
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.acciones {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.link {
+  color: var(--texto-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.btnazul {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3b82f6 0%, #7c3aed 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.contenedor {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  color: var(--texto);
+}
+
+.texto {
+  margin: 0 0 1.2rem;
+  color: var(--texto-muted);
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filtros a {
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid #dbe3f5;
+  color: var(--azul-principal);
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}

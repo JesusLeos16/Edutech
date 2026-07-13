@@ -1,0 +1,29 @@
+<header class="header">
+  <nav class="navbar">
+    <a class="logo" routerLink="/">Edutech</a>
+    <div class="acciones">
+      <a class="link" routerLink="/test">Hacer el test</a>
+      <a class="btnazul" routerLink="/">Inicio</a>
+    </div>
+  </nav>
+</header>
+
+<main class="contenedor">
+  <h1>Recomendaciones</h1>
+  <p class="texto">
+    @if (categoria) {
+      Categoria: <strong>{{ categoria }}</strong>
+    } @else {
+      Aun no hay recomendaciones.
+    }
+  </p>
+
+  <div class="filtros">
+    <a routerLink="/recomendaciones">Todas</a>
+    <a routerLink="/recomendaciones" [queryParams]="{ categoria: 'programacion' }">Programación</a>
+    <a routerLink="/recomendaciones" [queryParams]="{ categoria: 'diseno' }">Diseño</a>
+    <a routerLink="/recomendaciones" [queryParams]="{ categoria: 'negocios' }">Negocios</a>
+    <a routerLink="/recomendaciones" [queryParams]="{ categoria: 'marketing' }">Marketing</a>
+    <a routerLink="/recomendaciones" [queryParams]="{ categoria: 'idiomas' }">Idiomas</a>
+  </div>
+</main>

@@ -1,0 +1,104 @@
+:host {
+  display: block;
+  font-family: Inter, system-ui, sans-serif;
+  --azul-principal: #0053db;
+  --texto: #111827;
+  --texto-muted: #6b7280;
+  --fondo-suave: #f2f3ff;
+}
+
+.header {
+  border-bottom: 1px solid #eef0ff;
+  background: #fff;
+}
+
+.navbar {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--azul-principal);
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.linkatras {
+  color: var(--texto-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.contenedor {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.progreso {
+  margin: 0 0 0.6rem;
+  color: var(--azul-principal);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.barrabase {
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1.8rem;
+}
+
+.relleno {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #7c3aed);
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  color: var(--texto);
+  font-size: 1.8rem;
+}
+
+.opciones {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.opcion {
+  text-align: left;
+  padding: 0.9rem 1rem;
+  border-radius: 0.8rem;
+  border: 1px solid #dbe3f5;
+  background: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.opcion:hover {
+  border-color: var(--azul-principal);
+  background: var(--fondo-suave);
+}
+
+.texto {
+  color: var(--texto-muted);
+  line-height: 1.6;
+  margin: 0 0 1.4rem;
+}
+
+.btnazul {
+  display: inline-flex;
+  padding: 0.75rem 1.2rem;
+  border-radius: 0.7rem;
+  background: linear-gradient(90deg, #6366f1 0%, #3b82f6 100%);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
