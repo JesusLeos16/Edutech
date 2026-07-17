@@ -1,0 +1,72 @@
+<div class="shellpanel" [class.menuvisible]="menuAbierto">
+  <aside class="barraside">
+    <div class="cabeceraside">
+      <a class="logo" routerLink="/" (click)="cerrarMenu()">Edutech</a>
+      <button type="button" class="btncerrar" (click)="cerrarMenu()" aria-label="Cerrar menú">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <nav class="navside">
+      <a
+        class="linkpanel"
+        routerLink="/panel/dashboard"
+        routerLinkActive="activo"
+        (click)="cerrarMenu()"
+      >
+        <i class="bi bi-grid-1x2"></i>
+        <span>Dashboard</span>
+      </a>
+      <a
+        class="linkpanel"
+        routerLink="/panel/cursos"
+        routerLinkActive="activo"
+        (click)="cerrarMenu()"
+      >
+        <i class="bi bi-collection-play"></i>
+        <span>Todos los cursos</span>
+      </a>
+      <a
+        class="linkpanel"
+        routerLink="/panel/mis-cursos"
+        routerLinkActive="activo"
+        (click)="cerrarMenu()"
+      >
+        <i class="bi bi-bookmark-heart"></i>
+        <span>Mis cursos</span>
+      </a>
+    </nav>
+
+    <div class="pieaside">
+      <div class="cajausuario">
+        <span class="avatar">{{ inicialUsuario }}</span>
+        <div class="datosuser">
+          <p class="nombre">{{ nombreUsuario }}</p>
+          <p class="rol">Estudiante</p>
+        </div>
+      </div>
+      <button type="button" class="btnsalir" (click)="cerrarSesion()">
+        <i class="bi bi-box-arrow-right"></i>
+        Salir
+      </button>
+    </div>
+  </aside>
+
+  @if (menuAbierto) {
+    <div class="velo" (click)="cerrarMenu()"></div>
+  }
+
+  <div class="zonaprincipal">
+    <header class="topbar">
+      <button type="button" class="btnhamburguesa" (click)="alternarMenu()" aria-label="Abrir menú">
+        <i class="bi bi-list"></i>
+      </button>
+      <p class="saludo">Hola, {{ nombreUsuario }}</p>
+      <a class="linkinicio" routerLink="/">Ir al inicio</a>
+    </header>
+
+    <main class="contenidopanel">
+      <router-outlet />
+    </main>
+  </div>
+</div>

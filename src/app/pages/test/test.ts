@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { Auth } from '@angular/fire/auth';
+import { PreferenciasService } from '../../../services/preferencias';
 
 @Component({
   selector: 'app-test',
@@ -8,6 +10,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './test.scss',
 })
 export class Test {
+  private auth = inject(Auth);
+  private router = inject(Router);
+  private preferencias = inject(PreferenciasService);
+
   preguntaActual = 0;
 
   preguntas = [
@@ -41,10 +47,21 @@ export class Test {
 
   respuestas: string[] = [];
 
-  elegir(opcion: string) {
+  get logeado() {
+    return !!this.auth.currentUser;
+  }
+
+  async elegir(opcion: string) {
     this.respuestas[this.preguntaActual] = opcion;
+
     if (this.preguntaActual < this.preguntas.length - 1) {
       this.preguntaActual = this.preguntaActual + 1;
+      return;
+    }
+
+    if (this.logeado) {
+      await this.preferencias.guardarTest(this.respuestas);
+      this.router.navigate(['/panel/dashboard']);
     }
   }
 

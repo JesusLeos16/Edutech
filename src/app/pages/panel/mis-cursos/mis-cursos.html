@@ -1,0 +1,56 @@
+<section class="pagina">
+  <header class="cabecerapagina">
+    <h1>Mis cursos</h1>
+    <p>Los cursos que guardaste para ver después.</p>
+  </header>
+
+  @if (cargando) {
+    <div class="cajavacia">
+      <p class="cargandotexto">Cargando tus cursos...</p>
+    </div>
+  } @else if (cursos.length === 0) {
+    <div class="cajavacia">
+      <div class="iconovacio">
+        <i class="bi bi-bookmark"></i>
+      </div>
+      <h2>Aún no guardas cursos</h2>
+      <p>
+        Ve a todos los cursos y guarda los que te interesen para
+        tenerlos aquí.
+      </p>
+      <a class="btnborde" routerLink="/panel/cursos">Ver todos los cursos</a>
+    </div>
+  } @else {
+    <div class="gridcursos">
+      @for (curso of cursos; track curso.videoId) {
+        <article class="tarjetacurso">
+          <a
+            class="linkvideo"
+            [href]="'https://www.youtube.com/watch?v=' + curso.videoId"
+            target="_blank"
+            rel="noopener"
+          >
+            <img class="miniatura" [src]="curso.imagen" [alt]="curso.titulo" />
+          </a>
+          <div class="cuerpocurso">
+            <h3 class="titulocurso">{{ curso.titulo }}</h3>
+            <p class="canal">{{ curso.canal }}</p>
+            <div class="accionescurso">
+              <a
+                class="btnver"
+                [href]="'https://www.youtube.com/watch?v=' + curso.videoId"
+                target="_blank"
+                rel="noopener"
+              >
+                <i class="bi bi-play-fill"></i> Ver
+              </a>
+              <button type="button" class="btnquitar" (click)="quitar(curso)">
+                <i class="bi bi-trash3"></i> Quitar
+              </button>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</section>

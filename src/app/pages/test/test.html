@@ -23,7 +23,11 @@
     </div>
   } @else {
     <h1>Listo</h1>
-    <p class="texto">Ya terminaste el test.</p>
-    <a class="btnazul" routerLink="/">Volver al inicio</a>
+    @if (logeado) {
+      <p class="texto">Guardando tus gustos...</p>
+    } @else {
+      <p class="texto">Ya terminaste el test. Inicia sesión para ver tus cursos recomendados.</p>
+      <a class="btnazul" routerLink="/">Volver al inicio</a>
+    }
   }
 </main>

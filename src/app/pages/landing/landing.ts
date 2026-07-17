@@ -1,5 +1,5 @@
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth';
@@ -12,6 +12,7 @@ import { AuthService } from '../../../services/auth';
 })
 export class Landing {
   private authService = inject(AuthService);
+  private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
   anio = new Date().getFullYear();
   public modalLoginVisible = false;
@@ -87,7 +88,7 @@ export class Landing {
         this.cerrarModalLogin();
         this.emailLogin = '';
         this.passwordLogin = '';
-        this.cdr.detectChanges();
+        this.router.navigate(['/panel/dashboard']);
       })
       .catch((error) => {
         console.error('Código de error Firebase:', error.code);
@@ -142,11 +143,12 @@ export class Landing {
 
       console.log('¡Cuenta creada y guardada en BD!', usuario.displayName);
       this.cerrarModalRegistro();
-      this.cdr.detectChanges();
 
       this.nombreRegistro = '';
       this.emailRegistro = '';
       this.passwordRegistro = '';
+
+      this.router.navigate(['/panel/dashboard']);
 
     } catch (error: any) {
       console.error('Código de error Firebase:', error.code);
@@ -179,7 +181,7 @@ export class Landing {
       .then((usuario) => {
         console.log('¡Sesión iniciada con Google!', usuario.displayName);
         this.cerrarModalLogin();
-        this.cdr.detectChanges();
+        this.router.navigate(['/panel/dashboard']);
       })
       .catch((error) => {
         console.error('Error con Google:', error);

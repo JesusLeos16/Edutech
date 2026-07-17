@@ -1,0 +1,73 @@
+<section class="pagina">
+  <header class="cabecerapagina">
+    <h1>Todos los cursos</h1>
+    <p>Recomendaciones de YouTube según tus respuestas del test.</p>
+  </header>
+
+  @if (cargando) {
+    <div class="cajavacia">
+      <p class="cargandotexto">Buscando cursos para ti...</p>
+    </div>
+  } @else if (sinTest) {
+    <div class="cajavacia">
+      <div class="iconovacio">
+        <i class="bi bi-play-btn"></i>
+      </div>
+      <h2>Primero haz el test</h2>
+      <p>
+        Necesitamos conocer tus gustos para buscar cursos.
+        Son solo 4 preguntas.
+      </p>
+      <a class="btnazul" routerLink="/test">Hacer el test</a>
+    </div>
+  } @else if (mensajeError) {
+    <div class="cajavacia">
+      <div class="iconovacio">
+        <i class="bi bi-exclamation-triangle"></i>
+      </div>
+      <h2>Algo salió mal</h2>
+      <p>{{ mensajeError }}</p>
+    </div>
+  } @else {
+    <div class="gridcursos">
+      @for (curso of cursos; track curso.videoId) {
+        <article class="tarjetacurso">
+          <a
+            class="linkvideo"
+            [href]="'https://www.youtube.com/watch?v=' + curso.videoId"
+            target="_blank"
+            rel="noopener"
+          >
+            <img class="miniatura" [src]="curso.imagen" [alt]="curso.titulo" />
+          </a>
+          <div class="cuerpocurso">
+            <h3 class="titulocurso">{{ curso.titulo }}</h3>
+            <p class="canal">{{ curso.canal }}</p>
+            <div class="accionescurso">
+              <a
+                class="btnver"
+                [href]="'https://www.youtube.com/watch?v=' + curso.videoId"
+                target="_blank"
+                rel="noopener"
+              >
+                <i class="bi bi-play-fill"></i> Ver
+              </a>
+              <button
+                type="button"
+                class="btnguardar"
+                [class.guardado]="yaGuardado(curso.videoId)"
+                (click)="guardar(curso)"
+              >
+                @if (yaGuardado(curso.videoId)) {
+                  <i class="bi bi-bookmark-check-fill"></i> Guardado
+                } @else {
+                  <i class="bi bi-bookmark"></i> Guardar
+                }
+              </button>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</section>

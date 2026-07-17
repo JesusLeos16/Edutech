@@ -52,4 +52,4 @@ Angular-Guia.md
 .firebase
 *-debug.log
 .runtimeconfig.json
-/src/environments
+/src/app/environments
