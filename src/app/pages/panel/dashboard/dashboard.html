@@ -1,0 +1,61 @@
+<section class="pagina">
+  <header class="cabecerapagina">
+    <h1>Dashboard</h1>
+    <p>Tu espacio para seguir el progreso y descubrir qué estudiar.</p>
+  </header>
+
+  <div class="gridresumen">
+    <article class="tarjetainfo">
+      <span class="etiqueta">Cursos guardados</span>
+      <strong class="numero">{{ cargando ? '—' : totalGuardados }}</strong>
+      <p>Los que marcas con guardar en todos los cursos.</p>
+    </article>
+
+    <article class="tarjetainfo">
+      <span class="etiqueta">Test de gustos</span>
+      <strong class="numero">{{ cargando ? '—' : (hizoTest ? 'Listo' : 'Pendiente') }}</strong>
+      <p>
+        @if (hizoTest) {
+          Ya conocemos tus gustos. Puedes repetirlo cuando quieras.
+        } @else {
+          Haz el test para recibir contenido a tu medida.
+        }
+      </p>
+    </article>
+
+    <article class="tarjetainfo">
+      <span class="etiqueta">Recomendaciones</span>
+      <strong class="numero">{{ cargando ? '—' : (hizoTest ? 'Activas' : '0') }}</strong>
+      <p>Videos de YouTube buscados con tus respuestas.</p>
+    </article>
+  </div>
+
+  @if (!cargando) {
+    @if (hizoTest) {
+      <div class="cajavacia">
+        <div class="iconovacio">
+          <i class="bi bi-collection-play"></i>
+        </div>
+        <h2>Tus cursos te esperan</h2>
+        <p>
+          Ya tenemos tus gustos guardados. Revisa las recomendaciones
+          que encontramos para ti en YouTube.
+        </p>
+        <a class="btnazul" routerLink="/panel/cursos">Ver cursos</a>
+        <a class="linktest" routerLink="/test">Repetir el test</a>
+      </div>
+    } @else {
+      <div class="cajavacia">
+        <div class="iconovacio">
+          <i class="bi bi-compass"></i>
+        </div>
+        <h2>Empieza por el test</h2>
+        <p>
+          Responde 4 preguntas y Edutech te va a sugerir contenido de
+          YouTube según tus respuestas.
+        </p>
+        <a class="btnazul" routerLink="/test">Hacer el test</a>
+      </div>
+    }
+  }
+</section>

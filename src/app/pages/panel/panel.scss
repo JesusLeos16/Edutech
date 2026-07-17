@@ -1,0 +1,264 @@
+:host {
+  display: block;
+  font-family: Inter, system-ui, sans-serif;
+  --azul-principal: #0053db;
+  --azul-acento: #2563eb;
+  --morado: #831ada;
+  --texto: #111827;
+  --texto-muted: #6b7280;
+  --fondo-suave: #f2f3ff;
+  --borde: #e8eaf6;
+  --blanco: #ffffff;
+}
+
+.shellpanel {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(131, 26, 218, 0.07), transparent 45%),
+    var(--fondo-suave);
+}
+
+.barraside {
+  background: var(--blanco);
+  border-right: 1px solid var(--borde);
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem 1rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 30;
+}
+
+.cabeceraside {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.4rem 1.4rem;
+}
+
+.logo {
+  color: var(--azul-principal);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.btncerrar {
+  display: none;
+  border: none;
+  background: transparent;
+  color: var(--texto-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.navside {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.linkpanel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 0.8rem;
+  color: var(--texto);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.linkpanel i {
+  font-size: 1.1rem;
+  color: var(--texto-muted);
+}
+
+.linkpanel:hover {
+  background: var(--fondo-suave);
+  color: var(--azul-principal);
+}
+
+.linkpanel:hover i {
+  color: var(--azul-principal);
+}
+
+.linkpanel.activo {
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.12), rgba(131, 26, 218, 0.1));
+  color: var(--azul-principal);
+  font-weight: 700;
+}
+
+.linkpanel.activo i {
+  color: var(--azul-principal);
+}
+
+.pieaside {
+  border-top: 1px solid var(--borde);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.cajausuario {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.2rem 0.3rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2563eb, #831ada);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.datosuser {
+  min-width: 0;
+}
+
+.nombre {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--texto);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rol {
+  margin: 0.1rem 0 0;
+  font-size: 0.78rem;
+  color: var(--texto-muted);
+}
+
+.btnsalir {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 0.7rem;
+  border: 1px solid #fecaca;
+  background: #fff;
+  color: #dc2626;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btnsalir:hover {
+  background: #fef2f2;
+}
+
+.velo {
+  display: none;
+}
+
+.zonaprincipal {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid var(--borde);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.btnhamburguesa {
+  display: none;
+  border: 1px solid var(--borde);
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  color: var(--texto);
+  font-size: 1.25rem;
+}
+
+.saludo {
+  margin: 0;
+  flex: 1;
+  font-weight: 700;
+  color: var(--texto);
+  font-size: 1rem;
+}
+
+.linkinicio {
+  color: var(--azul-principal);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.contenidopanel {
+  padding: 1.6rem 1.5rem 2.5rem;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .shellpanel {
+    grid-template-columns: 1fr;
+  }
+
+  .barraside {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: min(280px, 86vw);
+    transform: translateX(-105%);
+    transition: transform 0.25s ease;
+    box-shadow: 8px 0 24px rgba(15, 23, 42, 0.12);
+  }
+
+  .shellpanel.menuvisible .barraside {
+    transform: translateX(0);
+  }
+
+  .btncerrar,
+  .btnhamburguesa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .velo {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.4);
+    z-index: 20;
+  }
+}

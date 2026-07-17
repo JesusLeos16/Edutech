@@ -1,0 +1,125 @@
+:host {
+  display: block;
+  --azul-principal: #0053db;
+  --texto: #111827;
+  --texto-muted: #6b7280;
+  --fondo-suave: #f2f3ff;
+  --borde: #e8eaf6;
+}
+
+.pagina {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cabecerapagina h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  color: var(--texto);
+}
+
+.cabecerapagina p {
+  margin: 0;
+  color: var(--texto-muted);
+  max-width: 36rem;
+  line-height: 1.55;
+}
+
+.gridresumen {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.tarjetainfo {
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 1rem;
+  padding: 1.2rem;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+.etiqueta {
+  display: block;
+  color: var(--azul-principal);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+}
+
+.numero {
+  display: block;
+  font-size: 1.8rem;
+  color: var(--texto);
+  margin-bottom: 0.45rem;
+}
+
+.tarjetainfo p {
+  margin: 0;
+  color: var(--texto-muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.cajavacia {
+  background: #fff;
+  border: 1px dashed #c7d2fe;
+  border-radius: 1.2rem;
+  padding: 2.4rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.03);
+}
+
+.iconovacio {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2563eb, #831ada);
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.cajavacia h2 {
+  margin: 0 0 0.55rem;
+  color: var(--texto);
+  font-size: 1.25rem;
+}
+
+.cajavacia p {
+  margin: 0 auto 1.4rem;
+  max-width: 28rem;
+  color: var(--texto-muted);
+  line-height: 1.55;
+}
+
+.btnazul {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.2rem;
+  border-radius: 0.7rem;
+  background: linear-gradient(90deg, #6366f1 0%, #3b82f6 100%);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.linktest {
+  display: block;
+  margin-top: 0.9rem;
+  color: var(--azul-principal);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .gridresumen {
+    grid-template-columns: 1fr;
+  }
+}

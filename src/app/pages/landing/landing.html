@@ -23,11 +23,11 @@
 
       @if (menuUsuarioVisible) {
         <div class="dropdown-menu">
-          <a routerLink="/perfil" (click)="menuUsuarioVisible = false">
-            Perfil
+          <a routerLink="/panel/dashboard" (click)="menuUsuarioVisible = false">
+            Mi panel
           </a>
-          <a routerLink="/configuracion" (click)="menuUsuarioVisible = false">
-            Configuración de la cuenta
+          <a routerLink="/panel/mis-cursos" (click)="menuUsuarioVisible = false">
+            Mis cursos
           </a>
           <hr />
           <button class="btn-salir" (click)="cerrarSesion()">
