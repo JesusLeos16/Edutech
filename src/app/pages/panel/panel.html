@@ -57,12 +57,36 @@
   }
 
   <div class="zonaprincipal">
-    <header class="topbar">
+<header class="topbar">
       <button type="button" class="btnhamburguesa" (click)="alternarMenu()" aria-label="Abrir menú">
         <i class="bi bi-list"></i>
       </button>
       <p class="saludo">Hola, {{ nombreUsuario }}</p>
-      <a class="linkinicio" routerLink="/">Ir al inicio</a>
+      
+      <div class="user-dropdown-container" style="position: relative; display: inline-block;">
+        
+        <button type="button" class="btn-user-trigger" (click)="dropdownAbierto = !dropdownAbierto">
+          <span class="avatar-mini">{{ inicialUsuario }}</span>
+          <span class="user-nombre">{{ nombreUsuario }}</span>
+          <i class="bi" [ngClass]="dropdownAbierto ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+        </button>
+
+        @if (dropdownAbierto) {
+          <div class="dropdown-box">
+            <a routerLink="/perfil" class="dropdown-item" (click)="dropdownAbierto = false">
+              <i class="bi bi-person-fill"></i> Mi Perfil
+            </a>
+            <a routerLink="/" class="dropdown-item" (click)="dropdownAbierto = false">
+              <i class="bi bi-house-door-fill"></i> Volver al Inicio
+            </a>
+            <hr class="dropdown-divider" />
+            <button type="button" class="dropdown-item salir" (click)="cerrarSesion()">
+              <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+            </button>
+          </div>
+        }
+
+      </div>
     </header>
 
     <main class="contenidopanel">

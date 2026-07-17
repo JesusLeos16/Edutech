@@ -15,7 +15,8 @@ export class Panel implements OnInit {
   private cdr = inject(ChangeDetectorRef);
 
   public usuarioLogeado: any = null;
-  public menuAbierto = false;
+  public menuAbierto = false; 
+  public dropdownAbierto = false;
 
   ngOnInit() {
     this.authService.usuario$.subscribe((usuario: any) => {
@@ -37,6 +38,7 @@ export class Panel implements OnInit {
       .logout()
       .then(() => {
         this.menuAbierto = false;
+        this.dropdownAbierto = false;
         this.router.navigateByUrl('/');
       })
       .catch((error) => console.error('Error al salir:', error));

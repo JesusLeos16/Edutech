@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Landing } from './pages/landing/landing';
 import { Test } from './pages/test/test';
 import { Recomendaciones } from './pages/recomendaciones/recomendaciones';
+import { Perfil } from './pages/perfil/perfil';
 import { Panel } from './pages/panel/panel';
 import { Dashboard } from './pages/panel/dashboard/dashboard';
 import { Cursos } from './pages/panel/cursos/cursos';
@@ -12,6 +13,8 @@ export const routes: Routes = [
   { path: '', component: Landing },
   { path: 'test', component: Test },
   { path: 'recomendaciones', component: Recomendaciones },
+  { path: 'perfil', component: Perfil },
+  { path: 'configuracion', component: Perfil },
   {
     path: 'panel',
     component: Panel,

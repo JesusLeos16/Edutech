@@ -48,6 +48,7 @@ Thumbs.db
 .claude/
 Angular-Guia.md
 .cursor/
+
 # Firebase
 .firebase
 *-debug.log

@@ -803,7 +803,6 @@
   text-transform: uppercase;
 }
 
-// --- ALERTA DE ERROR Y SU ANIMACIÓN (¡Solo una vez!) ---
 .alerta-error {
   background-color: #fde8e8;
   color: #c81e1e;
@@ -917,4 +916,122 @@
 @keyframes dropFade {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.navlink {
+  color: var(--texto);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 0.1rem;
+  
+  transition: all 0.25s ease-in-out;
+}
+
+.navlink:hover,
+.navactivo {
+  color: var(--azul-principal);
+}
+
+.navactivo {
+  border-bottom-color: var(--azul-principal);
+}
+
+.user-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.8rem;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+  }
+
+  .user-nombre {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .avatar-mini {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #eff6ff;
+    color: #3b82f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+}
+
+.dropdown-box {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  width: 200px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  padding: 0.4rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0.8rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #334155;
+    text-decoration: none;
+    border-radius: 8px;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+
+    i {
+      font-size: 1rem;
+      color: #3b82f6; /* Azul Edutech */
+    }
+
+    &:hover {
+      background-color: #f8fafc;
+      color: #2563eb;
+    }
+
+    &.salir {
+      color: #dc2626;
+      i { color: #dc2626; }
+      &:hover { background-color: #fef2f2; }
+    }
+  }
+
+  .dropdown-divider {
+    border: 0;
+    height: 1px;
+    background-color: #f1f5f9;
+    margin: 0.25rem 0;
+  }
 }

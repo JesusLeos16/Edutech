@@ -11,32 +11,40 @@ import { AuthService } from '../../../services/auth';
   styleUrl: './landing.scss',
 })
 export class Landing {
+
   private authService = inject(AuthService);
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
   anio = new Date().getFullYear();
   public modalLoginVisible = false;
   public modalRegistroVisible = false;
-
   public emailLogin: string = '';
   public passwordLogin: string = '';
   public nombreRegistro: string = '';
   public emailRegistro: string = '';
   public passwordRegistro: string = '';
   public mensajeError: string = '';
-
   public usuarioLogeado: any = null;
   public menuUsuarioVisible: boolean = false;
+  public seccionActiva: string = 'inicio';
+
+
+  seleccionarSeccion(seccion: string): void {
+    this.seccionActiva = seccion;
+
+    const elemento = document.getElementById(seccion);
+    if (elemento) {
+      elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 
   constructor() {
-    // Escuchamos en tiempo real si el usuario inicia o cierra sesión
     this.authService.usuario$.subscribe((usuario) => {
       this.usuarioLogeado = usuario;
-      this.cdr.detectChanges(); // Redibuja la barra de navegación de inmediato
+      this.cdr.detectChanges();
     });
   }
 
-  // --- NUEVOS MÉTODOS PARA EL MENÚ ---
   alternarMenuUsuario(): void {
     this.menuUsuarioVisible = !this.menuUsuarioVisible;
   }

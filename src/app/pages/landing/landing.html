@@ -2,36 +2,66 @@
   <nav class="navbar">
     <a class="logo" routerLink="/">Edutech</a>
 
-    <ul class="navlinks">
-      <li><a class="navlink navactivo" href="#inicio">Inicio</a></li>
-      <li><a class="navlink" href="#comofunciona">Cómo funciona</a></li>
-      <li><a class="navlink" href="#categorias">Categorías</a></li>
-      <li><a class="navlink" routerLink="/recomendaciones">Recomendaciones</a></li>
-      <li><a class="navlink" href="#acerca">Acerca de</a></li>
-    </ul>
+<ul class="navlinks">
+    <li>
+      <a class="navlink" style="cursor: pointer;" [class.navactivo]="seccionActiva === 'inicio'"
+        (click)="seleccionarSeccion('inicio')">
+        Inicio
+      </a>
+    </li>
+    <li>
+      <a class="navlink" style="cursor: pointer;" [class.navactivo]="seccionActiva === 'comofunciona'"
+        (click)="seleccionarSeccion('comofunciona')">
+        Cómo funciona
+      </a>
+    </li>
+    <li>
+      <a class="navlink" style="cursor: pointer;" [class.navactivo]="seccionActiva === 'categorias'"
+        (click)="seleccionarSeccion('categorias')">
+        Categorías
+      </a>
+    </li>
+    <li>
+      <a class="navlink" style="cursor: pointer;" [class.navactivo]="seccionActiva === 'recomendaciones'"
+        (click)="seleccionarSeccion('recomendaciones')">
+        Recomendaciones
+      </a>
+    </li>
+    <li>
+      <a class="navlink" style="cursor: pointer;" [class.navactivo]="seccionActiva === 'acerca'"
+        (click)="seleccionarSeccion('acerca')">
+        Acerca de
+      </a>
+    </li>
+  </ul>
 
 <div class="navbar-auth">
   @if (!usuarioLogeado) {
     <button type="button" class="navlink link-button" (click)="abrirModalLogin()">Iniciar sesión</button>
     <button type="button" class="registrobtn" (click)="abrirModalRegistro()">Regístrate</button>
   } @else {
-    <div class="menu-usuario-container">
-      <button class="btn-usuario" (click)="alternarMenuUsuario()">
-        <span class="nombre-user">{{ usuarioLogeado.displayName || 'Usuario' }}</span>
-        <span class="flecha" [class.rotada]="menuUsuarioVisible">▼</span>
+    <div class="user-dropdown-container">
+      
+      <button type="button" class="btn-user-trigger" (click)="menuUsuarioVisible = !menuUsuarioVisible">
+        <span class="avatar-mini">{{ (usuarioLogeado.displayName || 'U').charAt(0).toUpperCase() }}</span>
+        
+        <span class="user-nombre">{{ usuarioLogeado.displayName || 'Mi Cuenta' }}</span>
+        
+        <i class="bi" [ngClass]="menuUsuarioVisible ? 'bi-chevron-up' : 'bi-chevron-down'" style="font-size: 0.8rem;"></i>
       </button>
 
+      <!-- Caja desplegable -->
       @if (menuUsuarioVisible) {
-        <div class="dropdown-menu">
-          <a routerLink="/panel/dashboard" (click)="menuUsuarioVisible = false">
-            Mi panel
+        <div class="dropdown-box">
+          <a routerLink="/panel/dashboard" class="dropdown-item" (click)="menuUsuarioVisible = false">
+            <i class="bi bi-grid-1x2-fill"></i> Mi panel
           </a>
-          <a routerLink="/panel/mis-cursos" (click)="menuUsuarioVisible = false">
-            Mis cursos
+          <a routerLink="/perfil" class="dropdown-item" (click)="menuUsuarioVisible = false">
+            <i class="bi bi-person-fill"></i> Mi perfil
           </a>
-          <hr />
-          <button class="btn-salir" (click)="cerrarSesion()">
-            Salir de la cuenta
+          <hr class="dropdown-divider" />
+          <button type="button" class="dropdown-item salir" (click)="cerrarSesion()">
+            <i class="bi bi-box-arrow-right"></i> Salir de la cuenta
           </button>
         </div>
       }
@@ -209,7 +239,7 @@
     </div>
   </section>
 
-  <section class="vistaprevia">
+  <section class="vistaprevia" id="recomendaciones">
     <div class="textopreview">
       <h2 class="tituloseccion izq">Tu ruta comienza con 4 preguntas</h2>
       <p class="descrec">
@@ -249,7 +279,6 @@
   </section>
 </main>
 
-<!-- Modal de Inicio de Sesión -->
 <div class="modal-overlay" [class.visible]="modalLoginVisible" (click)="cerrarModalLogin()">
   <div class="modal-contenido" (click)="$event.stopPropagation()">
     <div class="auth-columna-principal">

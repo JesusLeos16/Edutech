@@ -1,0 +1,255 @@
+<div class="dashboard-layout">
+    <aside class="sidebar-perfil">
+        <!-- Logotipo -->
+        <div class="sidebar-header">
+            <a routerLink="/" class="logo">Edutech</a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a routerLink="/perfil" class="nav-item" [class.activo]="vistaActiva === 'perfil'"
+                (click)="cambiarVista('perfil')">
+                <i class="bi bi-person-fill"></i>
+                <span>Perfil</span>
+            </a>
+
+            <a routerLink="/configuracion" class="nav-item" [class.activo]="vistaActiva === 'configuracion'"
+                (click)="cambiarVista('configuracion')">
+                <i class="bi bi-gear-fill"></i>
+                <span>Configuración</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="cajausuario">
+                @if (usuario?.photoURL) {
+                <img [src]="usuario?.photoURL" alt="Avatar" class="avatar-img" />
+                } @else {
+                <span class="avatar-inicial">{{ (usuario?.displayName || 'U').charAt(0).toUpperCase() }}</span>
+                }
+
+                <div class="datosuser">
+                    <p class="nombre">{{ usuario?.displayName || 'Usuario' }}</p>
+                    <p class="rol">Estudiante</p>
+                </div>
+            </div>
+
+            <button type="button" class="btnsalir" (click)="cerrarSesion()">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Salir</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="main-wrapper">
+        <header class="topbar-perfil">
+            <div class="topbar-izq"></div>
+
+            <div class="user-dropdown-container">
+                <button type="button" class="btn-user-trigger" (click)="menuAbierto = !menuAbierto">
+                    @if (usuario?.photoURL) {
+                    <img [src]="usuario?.photoURL" alt="Avatar" class="avatar-mini-img" />
+                    } @else {
+                    <span class="avatar-mini">{{ (usuario?.displayName || 'U').charAt(0).toUpperCase() }}</span>
+                    }
+
+                    <span class="user-nombre">{{ usuario?.displayName || 'Mi Cuenta' }}</span>
+                    <i class="bi" [ngClass]="menuAbierto ? 'bi-chevron-up' : 'bi-chevron-down'"
+                        style="font-size: 0.8rem;"></i>
+                </button>
+
+                @if (menuAbierto) {
+                <div class="dropdown-box">
+                    <a routerLink="/panel/dashboard" class="dropdown-item" (click)="menuAbierto = false">
+                        <i class="bi bi-grid-1x2-fill"></i> Mi panel
+                    </a>
+                    <a routerLink="/" class="dropdown-item" (click)="menuAbierto = false">
+                        <i class="bi bi-house-door-fill"></i> Volver al Inicio
+                    </a>
+                    <hr class="dropdown-divider" />
+                    <button type="button" class="dropdown-item salir" (click)="cerrarSesion()">
+                        <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                    </button>
+                </div>
+                }
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+
+            @if (vistaActiva === 'perfil') {
+            <section class="profile-header-card">
+                <div class="profile-info-group">
+                    <div class="avatar-container">
+                        @if (subiendoFoto) {
+                        <div class="avatar-main-defecto cargando-foto">
+                            <i class="bi bi-arrow-repeat spin-icon"></i>
+                        </div>
+                        } @else if (usuario?.photoURL) {
+                        <img [src]="usuario?.photoURL" alt="Avatar" class="avatar-main" />
+                        } @else {
+                        <div class="avatar-main-defecto"><i class="bi bi-person-fill"></i></div>
+                        }
+
+                        <input type="file" #inputFoto (change)="onArchivoSeleccionado($event)" accept="image/*"
+                            style="display: none;" />
+                        <button type="button" class="btn-camara" title="Cambiar foto" [disabled]="subiendoFoto"
+                            (click)="inputFoto.click()">
+                            <i class="bi bi-camera-fill"></i>
+                        </button>
+                    </div>
+
+                    <div class="user-details">
+                        <h2>{{ usuario?.displayName || 'Usuario Edutech' }}</h2>
+                        <p>{{ usuario?.email }}</p>
+                    </div>
+                </div>
+
+                <div class="profile-buttons">
+                    <button type="button" class="btn-primario" (click)="cambiarVista('configuracion')">
+                        <i class="bi bi-pencil-fill"></i> Editar Perfil
+                    </button>
+                    <button type="button" class="btn-secundario" (click)="cambiarVista('configuracion')">
+                        Configuración de Cuenta
+                    </button>
+                </div>
+            </section>
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-azul"><i class="bi bi-bookmark-fill"></i></div>
+                        <span class="stat-badge">Total acumulado</span>
+                    </div>
+                    <p class="stat-label">Cursos Guardados</p>
+                    <h3 class="stat-value">
+                        {{ cargandoEstadisticas ? '...' : estadisticas.cursosGuardados }}
+                    </h3>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-verde"><i class="bi bi-check-circle-fill"></i></div>
+                        <span class="stat-badge verde">{{ estadisticas.ratioCompletado }}% ratio</span>
+                    </div>
+                    <p class="stat-label">Playlists Completadas</p>
+                    <h3 class="stat-value">{{ estadisticas.playlistsCompletadas }}</h3>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-amarillo"><i class="bi bi-award-fill"></i></div>
+                        <span class="stat-badge">Exploradas</span>
+                    </div>
+                    <p class="stat-label">Categorías Consultadas</p>
+                    <h3 class="stat-value">{{ estadisticas.categoriasConsultadas }}</h3>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-morado"><i class="bi bi-clock-fill"></i></div>
+                        <span class="stat-badge">Tiempo invertido</span>
+                    </div>
+                    <p class="stat-label">Horas de Aprendizaje</p>
+                    <h3 class="stat-value">{{ estadisticas.horasAprendizaje }}h</h3>
+                </div>
+
+            </section>
+
+            <section class="bottom-grid">
+
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <h3>Progreso de Aprendizaje</h3>
+                        <span class="porcentaje-total">{{ estadisticas.progresoGeneral }}%</span>
+                    </div>
+
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" [style.width]="estadisticas.progresoGeneral + '%'"></div>
+                    </div>
+
+                    <p class="mensaje-motivacion">
+                        <i class="bi bi-star-fill star-icon"></i>
+                        ¡Bienvenido! Explora nuestras categorías y guarda tu primer curso para comenzar a sumar
+                        progreso.
+                    </p>
+                </div>
+
+                <div class="panel-card">
+                    <h3>Metas Académicas</h3>
+
+                    <div class="meta-item">
+                        <div class="meta-info">
+                            <span>Meta Semanal</span>
+                            <strong>{{ estadisticas.metaSemanal }}%</strong>
+                        </div>
+                        <div class="progress-bar-bg mini">
+                            <div class="progress-bar-fill azul" [style.width]="estadisticas.metaSemanal + '%'"></div>
+                        </div>
+                    </div>
+
+                    <div class="meta-item">
+                        <div class="meta-info">
+                            <span>Meta Mensual</span>
+                            <strong>{{ estadisticas.metaMensual }}%</strong>
+                        </div>
+                        <div class="progress-bar-bg mini">
+                            <div class="progress-bar-fill morado" [style.width]="estadisticas.metaMensual + '%'"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            }
+
+            @if (vistaActiva === 'configuracion') {
+            <section class="config-container">
+                <div class="config-header">
+                    <h2>Configuración de la Cuenta</h2>
+                    <p>Administra tu información personal y las opciones de seguridad de tu cuenta en Edutech.</p>
+                </div>
+
+                <div class="config-card">
+                    <h3><i class="bi bi-person-lines-fill"></i> Información Personal</h3>
+                    <p class="config-sub">Actualiza tu nombre visible en toda la plataforma y certificados.</p>
+
+                    <div class="form-grupo">
+                        <label for="nombreInput">Nombre Completo</label>
+                        <div class="input-con-boton">
+                            <input type="text" id="nombreInput" [(ngModel)]="nuevoNombre"
+                                placeholder="Escribe tu nombre" />
+                            <button type="button" class="btn-guardar"
+                                [disabled]="guardandoNombre || !nuevoNombre.trim() || nuevoNombre === usuario?.displayName"
+                                (click)="guardarNombre()">
+                                {{ guardandoNombre ? 'Guardando...' : 'Guardar Cambios' }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo mt-3">
+                        <label>Correo Electrónico (No modificable)</label>
+                        <input type="email" [value]="usuario?.email" disabled class="input-deshabilitado" />
+                    </div>
+                </div>
+
+                <div class="config-card peligro">
+                    <h3><i class="bi bi-exclamation-triangle-fill icon-peligro"></i> Zona de Peligro</h3>
+                    <p class="config-sub">Una vez que elimines tu cuenta, perderás todo tu progreso, cursos guardados y
+                        certificados. Esta acción es irreversible.</p>
+
+                    <div class="acciones-peligro">
+                        <div class="texto-peligro">
+                            <strong>Eliminar cuenta de Edutech</strong>
+                            <span>Se borrarán todos tus datos de nuestros servidores al instante.</span>
+                        </div>
+                        <button type="button" class="btn-eliminar" (click)="eliminarMiCuenta()">
+                            <i class="bi bi-trash-fill"></i> Eliminar Cuenta
+                        </button>
+                    </div>
+                </div>
+            </section>
+            }
+
+        </main>
+    </div>
+</div>

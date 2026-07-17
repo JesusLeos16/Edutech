@@ -1,6 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, user, signOut } from '@angular/fire/auth';
 import { Firestore, doc, setDoc, collection, query, where, getDocs } from '@angular/fire/firestore';
+import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
+import { User, deleteUser } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +11,50 @@ export class AuthService {
   private auth = inject(Auth);
   private firestore = inject(Firestore);
   public usuario$ = user(this.auth);
+  private storage = inject(Storage);
+
 
   async logout(): Promise<void> {
     try {
       await signOut(this.auth);
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
+      throw error;
+    }
+  }
+
+  async actualizarNombre(usuario: User, nuevoNombre: string): Promise<void> {
+    try {
+      await updateProfile(usuario, { displayName: nuevoNombre });
+    } catch (error) {
+      console.error('Error al actualizar el nombre:', error);
+      throw error;
+    }
+  }
+
+  async eliminarCuenta(usuario: User): Promise<void> {
+    try {
+      await deleteUser(usuario);
+    } catch (error) {
+      console.error('Error al eliminar la cuenta:', error);
+      throw error;
+    }
+  }
+
+  async actualizarFotoPerfil(archivo: File, usuario: User): Promise<string> {
+    try {
+      const ruta = `perfiles/${usuario.uid}/${Date.now()}_${archivo.name}`;
+      const referenciaImg = ref(this.storage, ruta);
+
+      await uploadBytes(referenciaImg, archivo);
+
+      const photoURL = await getDownloadURL(referenciaImg);
+
+      await updateProfile(usuario, { photoURL: photoURL });
+
+      return photoURL;
+    } catch (error) {
+      console.error('Error al subir la foto de perfil:', error);
       throw error;
     }
   }
