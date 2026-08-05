@@ -53,4 +53,8 @@ Angular-Guia.md
 .firebase
 *-debug.log
 .runtimeconfig.json
-/src/app/environments
+# Keys locales de desarrollo (plantilla: environment.example.ts)
+/src/app/environments/environment.development.ts
+.env
+.env.local
+.env.*.local
